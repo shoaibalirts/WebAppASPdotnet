@@ -39,7 +39,7 @@ app.Run(async (HttpContext context) =>
     {
         if (context.Request.Query.ContainsKey("id"))// Query is a dictionary
         {
-            string id = context.Request.Query["id"];
+            string id = context.Request.Query["id"].ToString();
             await context.Response.WriteAsync($"<p>{id}</p>");
         }
 
