@@ -35,19 +35,24 @@ app.Run(async (HttpContext context) =>
     }
     */
     context.Response.Headers["Content-type"] = "text/html";
-    if (context.Request.Method == "GET")
+    if (context.Request.Method == "POST")
     {
         if (context.Request.Query.ContainsKey("id"))// Query is a dictionary
         {
             string id = context.Request.Query["id"].ToString();
-            await context.Response.WriteAsync($"<p>{id}</p>");
+            await context.Response.WriteAsync($"<p>ID: {id}</p>");
         }
 
     }
     if (context.Request.Headers.ContainsKey("User-Agent"))
     {
         string userAgent = context.Request.Headers["User-Agent"].ToString();
-        await context.Response.WriteAsync($"<p>{userAgent}</p>");
+        await context.Response.WriteAsync($"<p>User-Agent: {userAgent}</p>");
+    }
+    if (context.Request.Headers.ContainsKey("AuthorizationKey"))
+    {
+        string authKey = context.Request.Headers["AuthorizationKey"].ToString();
+        await context.Response.WriteAsync($"<p>AuthoriaztionKey: {authKey}</p>");
     }
 });
 
